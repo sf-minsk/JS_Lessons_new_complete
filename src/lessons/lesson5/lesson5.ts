@@ -20,6 +20,130 @@ console.log('Lesson 5');
 // https://learn.javascript.ru/call-apply-decorators
 // https://medium.com/@stasonmars/%D0%BF%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D0%BE-%D0%BE-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%B0%D1%85-apply-call-%D0%B8-bind-%D0%BD%D0%B5%D0%BE%D0%B1%D1%85%D0%BE%D0%B4%D0%B8%D0%BC%D1%8B%D1%85-%D0%BA%D0%B0%D0%B6%D0%B4%D0%BE%D0%BC%D1%83-javascript-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D1%83-ddd5f9b06290
 
+//console.log(this);
+
+// function f() {
+//     console.log('this in function declaration ', this);
+// }
+//
+// f();
+
+
+// let obj = { name: 'Evgen' };
+// let obj2 = { name: 'Vlad' };
+//
+// function f() {
+//     console.log('this in function declaration ', this);
+// }
+//
+// obj.f = f;
+// obj2.f = f;
+// f();
+// obj.f();
+// obj2.f();
+
+
+// let arrow = () => console.log('this in arrow function ', this);
+// obj.arrow = arrow;
+// obj2.arrow = arrow;
+// arrow();
+// obj.arrow();
+// obj2.arrow();
+
+// obj.test = function() {
+//     let arrow = () => console.log('this in arrow function ', this);
+//     arrow();
+// }
+//
+// obj.test();
+//
+// obj2.test = function() {
+//     function testFunc() {
+//         console.log('this in function declaration ', this);
+//     };
+//     testFunc();
+// }
+//
+// obj2.test();
+
+// obj.test = function() {
+//     let arrow = () => console.log('this in arrow function ', this);
+//     return arrow;
+// }
+//
+// obj2.test = obj.test();
+// obj2.test();
+
+
+// obj.test = function() {
+//     return function() {
+//         console.log('this in function declaration ', this);
+//     }
+// }
+//
+// let test = obj.test();
+// test();
+
+// setTimeout(function() { console.log('this in function declaration ', this)}, 0);
+// setTimeout(() => { console.log('this in arrow function ', this)}, 0);
+
+// let obj = {
+//     name: 'Evgen',
+//     test() {
+//         setTimeout(function() { console.log('this in function declaration ', this)}, 0);
+//         setTimeout(() => { console.log('this in arrow function ', this)}, 0);
+//     },
+// };
+//
+// obj.test();
+
+
+// obj.test = function() {
+//     return () => console.log('this in arrow function ', this);
+// }
+//
+// let test = obj.test();
+// test();
+
+
+// let obj2 = {
+//     name: 'Vlad',
+//     f() { return function() { console.log('this in function declaration ', this); } },
+//     f2() { return () => console.log('this in arrow function ', this) },
+//     a: () => { return function() { console.log('this in function declaration ', this); }},
+//     a2: () => { return () => console.log('this in arrow function ', this) },
+// };
+//
+// let obj = {
+//     name: 'Evgen',
+//     test() {
+//         setTimeout(obj2.f(), 0);
+//         setTimeout(obj2.f2(), 0);
+//     },
+// };
+//
+// obj.test();
+
+
+// let obj2 = {
+//     name: 'Vlad',
+//     f() { return function() { console.log('this in function declaration ', this); } },
+//     f2() { return () => console.log('this in arrow function ', this) },
+//     a: () => { return function() { console.log('this in function declaration ', this); }},
+//     a2: () => { return () => console.log('this in arrow function ', this) },
+// };
+//
+// let obj = {
+//     name: 'Evgen',
+//     test() {
+//         setTimeout(obj2.a(), 0);
+//         setTimeout(obj2.a2(), 0);
+//     },
+// };
+//
+// obj.test();
+
+
 
 // Task 01
 // Дан объект someObj, реализуйте функцию greeting и присвойте ее ключу объекта с аналогичным именем.
@@ -75,6 +199,28 @@ function sumTwoNumbers(a:number,b:number):number {return a + b};
 // 4) Создать метод hi у объекта One, который всегда вызывает метод greeting объекта helperObj от имени Two
 
 // Реализовать задачи 2-4 из Bind с помощью Call
+
+
+let obj = { name: 'Evgen' };
+let obj2 = {
+    name: 'Vlad',
+    //@ts-ignore
+    sayName(arg1, arg2) {
+        //@ts-ignore
+        console.log(this.name, arg1, arg2);
+    }
+};
+
+//@ts-ignore
+//obj.sayName = obj2.sayName;
+//@ts-ignore
+//obj.sayName();
+// let sayName = obj2.sayName.bind(obj, 0);
+//@ts-ignore
+//sayName(50);
+
+//obj2.sayName.call(obj, 50, 100);
+obj2.sayName.apply(obj, [50, 100]);
 
 
 
