@@ -1,3 +1,5 @@
+import './lesson7JS'
+
 console.log('Lesson 7');
 
 // __Proto__
